@@ -7,6 +7,8 @@
 
 const igs = require('ingescape');
 
+const { GameState } = require('./GameState');
+
 class GameStateTransformer {
 
   constructor() {
@@ -14,8 +16,35 @@ class GameStateTransformer {
     this.gameStateJsonI = "";
     this.statusJsonI = "";
 
+    //outputs
+    this.countries = null;
+    this.ladder = null;
+
     //add code here if needed
 
+  }
+
+  transformInputToGameState() {
+    try {
+      input = this.getGameStateJsonI();
+
+      result = JSON.parse(input);
+
+      if(result.countries) {
+        this.countries = result.countries;
+      } else {
+        console.error("countries not found");
+      }
+
+      if(result.ladder) {
+        this.ladder = result.ladder;
+      } else {
+        console.error("ladder not found");
+      }
+
+    } catch(e) {
+      console.error(e);
+    }
   }
 
   /////////////////////////////////////////////////////////////////////
