@@ -4,21 +4,23 @@
 #
 #  main.py
 #  GameEngine version 1.0
-#  Created by Ingescape Circle on 2023/01/24
+#  Created by Ingenuity i/o on 2023/01/24
 #
-# "no description"
+# The agent that will receive player inputs' (text), then process it, then broadcast the current game's state to all
+# connected players.
 #
 
-import signal
 import getopt
+import signal
+import sys
 import time
 from pathlib import Path
 
 from GameEngine import *
 
-port = 5680
+port = 5670
 agent_name = "GameEngine"
-device = "en3"
+device = "enp0s3"
 verbose = False
 is_interrupted = False
 
@@ -29,7 +31,7 @@ ingescape_path = Path("~/Documents/Ingescape").expanduser()
 
 
 def print_usage():
-    print("Usage example: ", agent_name, " --verbose --port 5680 --device device_name")
+    print("Usage example: ", agent_name, " --verbose --port 5670 --device device_name")
     print("\nthese parameters have default value (indicated here above):")
     print("--verbose : enable verbose mode in the application (default is disabled)")
     print("--port port_number : port used for autodiscovery between agents (default: 31520)")
@@ -42,6 +44,7 @@ def print_usage_help():
     print("Available commands in the terminal:")
     print("	/quit : quits the agent")
     print("	/help : displays this message")
+
 
 def return_iop_value_type_as_str(value_type):
     if value_type == igs.INTEGER_T:
@@ -58,6 +61,7 @@ def return_iop_value_type_as_str(value_type):
         return "Data"
     else:
         return "Unknown"
+
 
 def return_event_type_as_str(event_type):
     if event_type == igs.PEER_ENTERED:
@@ -80,6 +84,7 @@ def return_event_type_as_str(event_type):
         return "AGENT_LOST_ELECTION"
     else:
         return "UNKNOWN"
+
 
 def signal_handler(signal_received, frame):
     global is_interrupted
@@ -106,6 +111,15 @@ def player_input_input_callback(iop_type, name, value_type, value, my_data):
     agent_object.player_inputI = value
     pass
     # add code here if needed
+
+
+# services
+def player_callback(sender_agent_name, sender_agent_uuid, service_name, tuple_args, token, my_data):
+    agent_object = my_data
+    assert isinstance(agent_object, GameEngine)
+    name = tuple_args[0]
+    agent_object.player(sender_agent_name, sender_agent_uuid, name)
+
 
 if __name__ == "__main__":
 
@@ -137,6 +151,8 @@ if __name__ == "__main__":
 
     igs.agent_set_name(agent_name)
     igs.definition_set_version("1.0")
+    igs.definition_set_description("""The agent that will receive player inputs' (text), then process it, 
+    then broadcast the current game's state to all connected players.""")
     igs.log_set_console(verbose)
     igs.log_set_file(True, None)
     igs.log_set_stream(verbose)
@@ -154,7 +170,8 @@ if __name__ == "__main__":
                 device = list_devices[1].decode('utf-8')
             else:
                 device = list_devices[0].decode('utf-8')
-            print("using %s as de fault network device (this is the only one available that is not the loopback)" % str(device))
+            print("using %s as de fault network device (this is the only one available that is not the loopback)" % str(
+                device))
         else:
             if len(list_devices) == 0:
                 igs.error("No network device found: aborting.")
@@ -177,6 +194,9 @@ if __name__ == "__main__":
     igs.output_create("status_json", igs.STRING_T, None)
 
     igs.observe_input("player_input", player_input_input_callback, agent)
+
+    igs.service_init("player", player_callback, agent)
+    igs.service_arg_add("player", "name", igs.STRING_T)
 
     igs.start_with_device(device, port)
     # catch SIGINT handler after starting agent

@@ -47,18 +47,50 @@
                     "parameters": [
                     ],
                     "services": [
+                        {
+                            "arguments": [
+                                {
+                                    "name": "name",
+                                    "type": "STRING"
+                                }
+                            ],
+                            "name": "player",
+                            "replies": [
+                                {
+                                    "arguments": [
+                                        {
+                                            "name": "name",
+                                            "type": "STRING"
+                                        }
+                                    ],
+                                    "name": "name"
+                                }
+                            ]
+                        }
                     ],
                     "version": "1.0"
                 },
                 "identity": "GameEngine",
                 "instances": [
+                    {
+                        "commandLine": "/home/vm/country-guesser-ihm/CountryGuesser/GameEngine/venv/bin/python main.py",
+                        "hostname": "vm",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:E5:0D:C4"
+                    },
+                    {
+                        "commandLine": "/home/vm/country-guesser-ihm/CountryGuesser/GameEngine/venv/bin/python /home/vm/country-guesser-ihm/CountryGuesser/GameEngine/src/main.py",
+                        "hostname": "vm",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:E5:0D:C4"
+                    }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
                     "positionX": 817,
                     "positionY": 90,
-                    "positionZ": 2.599999999999988,
+                    "positionZ": 5.859999999999919,
                     "width": 252
                 }
             },
@@ -496,7 +528,7 @@
                     "isCollapsed": false,
                     "positionX": 768,
                     "positionY": 406,
-                    "positionZ": 2.5799999999999885,
+                    "positionZ": 5.7699999999999205,
                     "width": 252
                 }
             }
@@ -618,6 +650,48 @@
                     "positionY": 408,
                     "positionZ": 2.2099999999999964,
                     "width": 256
+                }
+            },
+            {
+                "data": {
+                    "arguments": [
+                        {
+                            "name": ""
+                        }
+                    ],
+                    "selectedAgent": "GameEngine",
+                    "selectedService": "player"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-548p-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "fdd92622-5571-4745-8bde-dd018ef9463a",
+                "instances": [
+                ],
+                "view": {
+                    "height": 48,
+                    "isCollapsed": true,
+                    "positionX": 155,
+                    "positionY": 683,
+                    "positionZ": 5.8199999999999195,
+                    "width": 246
                 }
             }
         ]
