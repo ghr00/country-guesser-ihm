@@ -27,6 +27,10 @@ class Singleton(type):
         return cls._instances[cls]
 
 
+with open("data/countries.txt", "r") as f:
+    world_countries = f.readlines()
+
+
 class GameEngine(metaclass=Singleton):
     def __init__(self):
         # inputs
@@ -81,7 +85,8 @@ class GameEngine(metaclass=Singleton):
 
     def process_guess(self):
         guess = self.country_guess
-        if not is_valid_country(guess):
+        [is_valid, guess] = is_valid_country(guess, world_countries)
+        if not is_valid:
             self._status_jsonO["status"] = Status.INVALID_GUESS.value
         else:
             if guess in [element["name"] for element in self._game_state_jsonO["countries"]]:
