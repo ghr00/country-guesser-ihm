@@ -22,17 +22,17 @@ let agentName = "GameStateTransformer";
 let igsCertPath = "";
 let publicCertsDir = "";
 
-let GameStateTransformer = new GameStateTransformer();
+let gameStateTransformer = new GameStateTransformer();
 
 //inputs
 function gameStateJsonInputCallback(iopType, name, valueType, value, myData) {
   igs.info(name + " changed to " + value);
-  GameStateTransformer.setGameStateJsonI(value);
+  gameStateTransformer.setGameStateJsonI(value);
 }
 
 function statusJsonInputCallback(iopType, name, valueType, value, myData) {
   igs.info(name + " changed to " + value);
-  GameStateTransformer.setStatusJsonI(value);
+  gameStateTransformer.setStatusJsonI(value);
 }
 
 

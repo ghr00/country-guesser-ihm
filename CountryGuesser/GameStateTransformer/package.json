@@ -10,8 +10,7 @@
   "author": "Ingenuity i/o",
   "license": "SEE LICENSE IN LICENSE file",
   "dependencies": {
-    "command-line-args": "*",
-    "ingescape": "*"
+    "command-line-args": "^5.2.1",
+    "ingescape": "^3.0.2"
   }
 }
-
