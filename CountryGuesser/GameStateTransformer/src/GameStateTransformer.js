@@ -7,6 +7,8 @@
 
 const igs = require('ingescape');
 
+const { parseSVG } = require('./SVGParser');
+
 const { GameState } = require('./GameState');
 
 class GameStateTransformer {
@@ -26,24 +28,26 @@ class GameStateTransformer {
 
   transformInputToGameState() {
     try {
-      input = this.getGameStateJsonI();
+      input = this.gameStateJsonI;
 
       result = JSON.parse(input);
+
+      igs.info(result);
 
       if(result.countries) {
         this.countries = result.countries;
       } else {
-        console.error("countries not found");
+        igs.error("countries not found");
       }
 
       if(result.ladder) {
         this.ladder = result.ladder;
       } else {
-        console.error("ladder not found");
+        igs.error("ladder not found");
       }
 
     } catch(e) {
-      console.error(e);
+      igs.error(e);
     }
   }
 
@@ -55,7 +59,15 @@ class GameStateTransformer {
     this.gameStateJsonI = gameStateJsonI;
 
     //add code here if needed
+    //transformInputToGameState() ;
 
+    //result = JSON.parse(gameStateJsonI);
+
+    let argsList = [];
+    argsList = igs.serviceArgsAddString(argsList, JSON.stringify( { 'countries'
+    : [ { 'name' : 'Morocco' } ] }    ));
+
+    igs.serviceCall("Whiteboard", "chat", argsList, "");
   }
   getGameStateJsonI() {
     return this.gameStateJsonI;
