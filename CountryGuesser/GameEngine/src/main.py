@@ -4,7 +4,7 @@
 #
 #  main.py
 #  GameEngine version 1.0
-#  Created by Ingenuity i/o on 2023/01/24
+#  Created by Ingenuity i/o on 2023/01/27
 #
 # The agent that will receive player inputs' (text), then process it, then broadcast the current game's state to all
 # connected players.
@@ -109,16 +109,7 @@ def player_input_input_callback(iop_type, name, value_type, value, my_data):
     agent_object = my_data
     assert isinstance(agent_object, GameEngine)
     agent_object.player_inputI = value
-    pass
-    # add code here if needed
-
-
-# services
-def player_callback(sender_agent_name, sender_agent_uuid, service_name, tuple_args, token, my_data):
-    agent_object = my_data
-    assert isinstance(agent_object, GameEngine)
-    name = tuple_args[0]
-    agent_object.player(sender_agent_name, sender_agent_uuid, name)
+    agent_object.run()
 
 
 if __name__ == "__main__":
@@ -194,9 +185,6 @@ if __name__ == "__main__":
     igs.output_create("status_json", igs.STRING_T, None)
 
     igs.observe_input("player_input", player_input_input_callback, agent)
-
-    igs.service_init("player", player_callback, agent)
-    igs.service_arg_add("player", "name", igs.STRING_T)
 
     igs.start_with_device(device, port)
     # catch SIGINT handler after starting agent

@@ -4,13 +4,18 @@
 #
 #  GameEngine.py
 #  GameEngine version 1.0
-#  Created by Ingenuity i/o on 2023/01/24
+#  Created by Ingenuity i/o on 2023/01/27
 #
 # The agent that will receive player inputs' (text), then process it, then broadcast the current game's state to all
 # connected players.
 #
 
+import json
+
 import ingescape as igs
+
+from src.status import Status
+from src.utils import is_valid_country
 
 
 class Singleton(type):
@@ -25,11 +30,17 @@ class Singleton(type):
 class GameEngine(metaclass=Singleton):
     def __init__(self):
         # inputs
+        # {"name": "player_name", "guess": "country_guess"}
         self.player_inputI = None
 
         # outputs
-        self._game_state_jsonO = None
-        self._status_jsonO = None
+        # {"countries": [{"name": "country", "guesser": "player"}], "ladder": [{"name": "player", "score": score}]}
+        self._game_state_jsonO = {"countries": [], "ladder": []}
+        # {"status": Status.UNDEFINED.value}
+        self._status_jsonO = {"status": Status.UNDEFINED.value}
+
+        self.player_name = None
+        self.country_guess = None
 
     # outputs
     @property
@@ -52,7 +63,33 @@ class GameEngine(metaclass=Singleton):
         if self._status_jsonO is not None:
             igs.output_set_string("status_json", self._status_jsonO)
 
-    # services
-    def player(self, sender_agent_name, sender_agent_uuid, name):
-        pass
-        # add code here if needed
+    def run(self):
+        self.parse_input()
+        self.process_username()
+        self.process_guess()
+
+    def parse_input(self):
+        player_input = json.loads(self.player_inputI)
+        self.player_name = player_input["name"]
+        self.country_guess = player_input["guess"]
+
+    def process_username(self):
+        name = self.player_name
+        if name not in [player["name"] for player in self._game_state_jsonO["ladder"]]:
+            print("Player", name, "joined the game.")
+            self._game_state_jsonO["ladder"].append({"name": name, "score": 0})
+
+    def process_guess(self):
+        guess = self.country_guess
+        if not is_valid_country(guess):
+            self._status_jsonO["status"] = Status.INVALID_GUESS.value
+        else:
+            if guess in [element["name"] for element in self._game_state_jsonO["countries"]]:
+                self._status_jsonO["status"] = Status.ALREADY_GUESSED.value
+            else:
+                print("Player", self.player_name, "guessed", guess, "correctly.")
+                self._game_state_jsonO["countries"].append({"name": guess, "guesser": self.player_name})
+                self._status_jsonO["status"] = Status.CORRECT_GUESS.value
+                next(p for p in self._game_state_jsonO["ladder"] if p["name"] == self.player_name)['score'] += 1
+        igs.output_set_string("game_state_json", json.dumps(self._game_state_jsonO))
+        igs.output_set_string("status_json", json.dumps(self._status_jsonO))
