@@ -1,0 +1,1 @@
+node index.js --verbose --device "Wi-Fi"

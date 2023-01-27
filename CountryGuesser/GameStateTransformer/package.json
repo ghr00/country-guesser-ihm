@@ -11,6 +11,10 @@
   "license": "SEE LICENSE IN LICENSE file",
   "dependencies": {
     "command-line-args": "^5.2.1",
-    "ingescape": "^3.0.2"
+    "dom-parser": "^0.1.6",
+    "ingescape": "^3.0.2",
+    "load-svg": "^1.0.0",
+    "parse-json": "^6.0.2",
+    "xmldom": "^0.6.0"
   }
 }

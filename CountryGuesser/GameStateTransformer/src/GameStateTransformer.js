@@ -11,6 +11,20 @@ const { parseSVG } = require('./SVGParser');
 
 const { GameState } = require('./GameState');
 
+
+const fs = require('fs').promises;
+
+async function readFile(filePath) {
+  try {
+    const data = await fs.readFile(filePath);
+    console.log(data.toString());
+
+    return data.toString();
+  } catch (error) {
+    console.error(`Got an error trying to read the file: ${error.message}`);
+  }
+}
+
 class GameStateTransformer {
 
   constructor() {
@@ -26,13 +40,11 @@ class GameStateTransformer {
 
   }
 
-  transformInputToGameState() {
+  transformInputToGameState(data) {
     try {
-      input = this.gameStateJsonI;
+      let result = JSON.parse(data);
 
-      result = JSON.parse(input);
-
-      igs.info(result);
+      igs.info(JSON.stringify(result.countries));
 
       if(result.countries) {
         this.countries = result.countries;
@@ -46,9 +58,23 @@ class GameStateTransformer {
         igs.error("ladder not found");
       }
 
+      return result;
     } catch(e) {
-      igs.error(e);
+      igs.error("exceptio");
+
+      return null;
     }
+  }
+
+  async transformGameStateToSVG(gameState) {
+    
+    const mapFilePath = "./public/world.svg";
+
+    let svgFileData = await readFile(mapFilePath);
+
+    let worldMap = await parseSVG(svgFileData);
+
+    igs.info(JSON.stringify(worldMap));
   }
 
   /////////////////////////////////////////////////////////////////////
@@ -58,16 +84,9 @@ class GameStateTransformer {
   setGameStateJsonI(gameStateJsonI) {
     this.gameStateJsonI = gameStateJsonI;
 
-    //add code here if needed
-    //transformInputToGameState() ;
+    let gameState = this.transformInputToGameState(this.getGameStateJsonI());
 
-    //result = JSON.parse(gameStateJsonI);
-
-    let argsList = [];
-    argsList = igs.serviceArgsAddString(argsList, JSON.stringify( { 'countries'
-    : [ { 'name' : 'Morocco' } ] }    ));
-
-    igs.serviceCall("Whiteboard", "chat", argsList, "");
+    this.transformGameStateToSVG(gameState) 
   }
   getGameStateJsonI() {
     return this.gameStateJsonI;
