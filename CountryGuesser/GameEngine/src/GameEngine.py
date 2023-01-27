@@ -96,5 +96,7 @@ class GameEngine(metaclass=Singleton):
                 self._game_state_jsonO["countries"].append({"name": guess, "guesser": self.player_name})
                 self._status_jsonO["status"] = Status.CORRECT_GUESS.value
                 next(p for p in self._game_state_jsonO["ladder"] if p["name"] == self.player_name)['score'] += 1
+                self._game_state_jsonO["ladder"] = sorted(self._game_state_jsonO["ladder"], key=lambda k: k['score'],
+                                                          reverse=True)
         igs.output_set_string("game_state_json", json.dumps(self._game_state_jsonO))
         igs.output_set_string("status_json", json.dumps(self._status_jsonO))
