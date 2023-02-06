@@ -7,6 +7,11 @@
 //  Copyright © 2022 Ingenuity i/o. All rights reserved.
 //
 
+var chart;
+var username;
+var serverURL = "ws://localhost:5000";
+var jsonText;
+
 //server connection
 function isConnectedToServerChanged(isConnected)
 {
@@ -25,7 +30,7 @@ function textInputCallback(type, name, valueType, value, myData) {
 }
 
 
-IGS.netSetServerURL("ws://localhost:5000");
+IGS.netSetServerURL(serverURL);
 IGS.agentSetName("WebUserInterface");
 IGS.observeWebSocketState(isConnectedToServerChanged);
 
@@ -43,25 +48,27 @@ IGS.observeInput("text", textInputCallback);
 //actually start ingescape
 IGS.start();
 
+//Jquery controls
+$(document).ready(function(){
 
-//
-// HTML example
-//
+    chart = createGlobe(false);    
 
-document.getElementById("serverURL").value = IGS.netServerURL();
-document.getElementById("name").innerHTML = IGS.agentName();
+    // Get value on button click and show alert
+    $("#button-subscribe").click(function(){
+        username = $("#username-input").val();
+        console.log(username);
+        chart.dispose();
+        chart = createGlobe(true);
+        $("#username").hide("fast");
+        $("#country").show("fast");
+        $('#word').text(`Hello ${username}, type your guess and send it!`)
+    });
 
-function executeAction() {
-    //add code here if needed
-}
-
-//update websocket config
-function setServerURL() {
-    IGS.netSetServerURL(document.getElementById("serverURL").value);
-}
-
-//write outputs
-function setplayer_inputOutput() {
-    IGS.outputSetString("player_input", document.getElementById("player_input_output").value);
-}
-
+    $("#button-submit").click(function(){
+        country = $("#country-input").val();
+        jsonText = `{"name": "${username}", "guess": "${country}"}`;
+        IGS.outputSetString("player_input", jsonText);
+        alert(`Your guess (${country}) has been sent!`);
+        console.log(country);
+    });
+});
