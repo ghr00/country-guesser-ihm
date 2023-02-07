@@ -1,17 +1,9 @@
-## Prerequisites
-
-* Ingescape C library installed
-* Python3 (https://www.python.org/downloads/)
-
-## Install dependencies
-```bash
-python3 -m pip install ingescape
+## How to run (in Ubuntu 20.04 and Python 3.8.10)
 ```
-
-## Run
-```bash
+cd country-guesser-ihm/CountryGuesser/GameEngine/
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cd src/
 python3 main.py
 ```
-
-
-
