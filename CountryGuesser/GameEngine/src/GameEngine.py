@@ -14,8 +14,8 @@ import json
 
 import ingescape as igs
 
-from src.status import Status
-from src.utils import is_valid_country
+from status import Status
+from utils import is_valid_country
 
 
 class Singleton(type):
