@@ -69,11 +69,15 @@ p{
     font-size: 1em;
 }
 
+#alert{
+    color: green;
+    font-size: 1em;
+}
+
 #chartdiv{
     height: 80vh;
     width: 60vw;
     padding: 50px;
     max-width:50%;
 }
-  
 

@@ -56,7 +56,6 @@ $(document).ready(function(){
     // Get value on button click and show alert
     $("#button-subscribe").click(function(){
         username = $("#username-input").val();
-        console.log(username);
         chart.dispose();
         chart = createGlobe(true);
         $("#username").hide("fast");
@@ -64,11 +63,29 @@ $(document).ready(function(){
         $('#word').text(`Hello ${username}, type your guess and send it!`)
     });
 
+    $('#username-input').keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  // the enter key code
+         {
+           $("#button-subscribe").click();
+           return false;  
+         }
+       });   
+
     $("#button-submit").click(function(){
+        $("#alert").hide("fast");
         country = $("#country-input").val();
         jsonText = `{"name": "${username}", "guess": "${country}"}`;
         IGS.outputSetString("player_input", jsonText);
-        alert(`Your guess (${country}) has been sent!`);
-        console.log(country);
+        $("#alert").show("fast");
     });
+
+    $('#country-input').keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  // the enter key code
+         {
+           $("#button-submit").click();
+           return false;  
+         }
+       });  
 });
