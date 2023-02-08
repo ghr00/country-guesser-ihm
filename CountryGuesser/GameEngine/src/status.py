@@ -1,0 +1,8 @@
+from enum import Enum
+
+
+class Status(Enum):
+    UNDEFINED = "UNDEFINED"
+    CORRECT_GUESS = "CORRECT_GUESS"
+    ALREADY_GUESSED = "ALREADY_GUESSED"
+    INVALID_GUESS = "INVALID_GUESS"

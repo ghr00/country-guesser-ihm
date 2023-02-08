@@ -69,6 +69,12 @@
                         "hostname": "vm",
                         "ipAddress": "10.0.2.15",
                         "mac": "08:00:27:E5:0D:C4"
+                    },
+                    {
+                        "commandLine": "/home/vm/dev/country-guesser-ihm/CountryGuesser/GameEngine/venv/bin/python3 main.py",
+                        "hostname": "vm",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:E5:0D:C4"
                     }
                 ],
                 "view": {
@@ -76,7 +82,7 @@
                     "isCollapsed": false,
                     "positionX": 817,
                     "positionY": 90,
-                    "positionZ": 6.26999999999991,
+                    "positionZ": 6.399999999999907,
                     "width": 252
                 }
             },
@@ -152,6 +158,12 @@
                 "instances": [
                     {
                         "commandLine": "\"/opt/Ingescape-Circle/bin/igsProxy\" --port 5670 --device \"enp0s3\" --name WebUserInterface --license \"/home/vm/Documents/Ingescape/licenses/\" --ws ws://localhost:5000",
+                        "hostname": "vm",
+                        "ipAddress": "10.0.2.15",
+                        "mac": "08:00:27:E5:0D:C4"
+                    },
+                    {
+                        "commandLine": "/opt/Ingescape-Circle/bin/igsProxy --port 5670 --device enp0s3 --name Proxy --license /home/vm/Documents/Ingescape/licenses/ --ws ws://localhost:5000",
                         "hostname": "vm",
                         "ipAddress": "10.0.2.15",
                         "mac": "08:00:27:E5:0D:C4"
@@ -551,35 +563,23 @@
                         "mac": "08:00:27:E5:0D:C4"
                     }
                 ],
-                "lastKnowAgentUUID": "6A7DFD4F316442419EAA4B9F536D1382",
+                "lastKnowAgentUUID": "719A4DD6272DEB3B311369551132C55D",
                 "view": {
                     "height": 44,
                     "isCollapsed": false,
-                    "positionX": 354,
-                    "positionY": 733,
-                    "positionZ": 6.299999999999909,
+                    "positionX": 323,
+                    "positionY": 692,
+                    "positionZ": 6.639999999999902,
                     "width": 252
                 }
             }
         ],
         "mappings": [
             {
-                "fromAgent": "WebUserInterface",
-                "fromInput": "text",
-                "toAgent": "19fc7397-3055-401d-81cd-927cc22ac108",
-                "toOutput": "value"
-            },
-            {
                 "fromAgent": "GameEngine",
                 "fromInput": "player_input",
                 "toAgent": "WebUserInterface",
                 "toOutput": "player_input"
-            },
-            {
-                "fromAgent": "WebUserInterface",
-                "fromInput": "text",
-                "toAgent": "872f2c4d-f0b4-4f1f-a114-8062619e8ebc",
-                "toOutput": "value"
             },
             {
                 "fromAgent": "GameStateTransformer",
@@ -592,6 +592,24 @@
                 "fromInput": "status_json",
                 "toAgent": "GameEngine",
                 "toOutput": "status_json"
+            },
+            {
+                "fromAgent": "a67cad75-c613-4fd9-8b18-c8b3b0bf73f9",
+                "fromInput": "wildcard",
+                "toAgent": "WebUserInterface",
+                "toOutput": "player_input"
+            },
+            {
+                "fromAgent": "575d8648-7bbc-4f88-8612-3d83cc595d7f",
+                "fromInput": "wildcard",
+                "toAgent": "GameEngine",
+                "toOutput": "game_state_json"
+            },
+            {
+                "fromAgent": "80e4ce1c-075e-4a1c-a417-ff76e852586e",
+                "fromInput": "wildcard",
+                "toAgent": "GameEngine",
+                "toOutput": "status_json"
             }
         ],
         "splits": [
@@ -601,26 +619,20 @@
         "tools": [
             {
                 "data": {
-                    "entry 0": "maroc"
                 },
                 "definition": {
                     "description": "",
-                    "family": "fbba66d6-8d60-4694-b5fa-63b6f3f51e63",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
                     "inputs": [
                         {
                             "description": "",
-                            "name": "trigger",
-                            "type": "IMPULSION"
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
                         }
                     ],
                     "isDynamic": false,
                     "name": "",
                     "outputs": [
-                        {
-                            "description": "",
-                            "name": "value",
-                            "type": "STRING"
-                        }
                     ],
                     "parameters": [
                     ],
@@ -628,40 +640,34 @@
                     ],
                     "version": ""
                 },
-                "identity": "19fc7397-3055-401d-81cd-927cc22ac108",
+                "identity": "a67cad75-c613-4fd9-8b18-c8b3b0bf73f9",
                 "instances": [
                 ],
                 "view": {
-                    "height": 52,
+                    "height": 87,
                     "isCollapsed": false,
-                    "positionX": -14,
-                    "positionY": 251,
-                    "positionZ": 6.319999999999909,
-                    "width": 256
+                    "positionX": 776,
+                    "positionY": 273,
+                    "positionZ": 6.439999999999906,
+                    "width": 326
                 }
             },
             {
                 "data": {
-                    "entry 0": "usa"
                 },
                 "definition": {
                     "description": "",
-                    "family": "fbba66d6-8d60-4694-b5fa-63b6f3f51e63",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
                     "inputs": [
                         {
                             "description": "",
-                            "name": "trigger",
-                            "type": "IMPULSION"
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
                         }
                     ],
                     "isDynamic": false,
                     "name": "",
                     "outputs": [
-                        {
-                            "description": "",
-                            "name": "value",
-                            "type": "STRING"
-                        }
                     ],
                     "parameters": [
                     ],
@@ -669,16 +675,51 @@
                     ],
                     "version": ""
                 },
-                "identity": "872f2c4d-f0b4-4f1f-a114-8062619e8ebc",
+                "identity": "80e4ce1c-075e-4a1c-a417-ff76e852586e",
                 "instances": [
                 ],
                 "view": {
-                    "height": 52,
+                    "height": 46,
                     "isCollapsed": false,
-                    "positionX": -19,
-                    "positionY": 408,
-                    "positionZ": 2.2099999999999964,
-                    "width": 256
+                    "positionX": 1298,
+                    "positionY": 496,
+                    "positionZ": 6.409999999999907,
+                    "width": 262
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "575d8648-7bbc-4f88-8612-3d83cc595d7f",
+                "instances": [
+                ],
+                "view": {
+                    "height": 181,
+                    "isCollapsed": false,
+                    "positionX": 1322,
+                    "positionY": 254,
+                    "positionZ": 6.4299999999999065,
+                    "width": 539
                 }
             }
         ]
