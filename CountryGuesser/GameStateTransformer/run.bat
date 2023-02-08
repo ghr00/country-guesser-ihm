@@ -1,1 +1,1 @@
-node index.js --verbose --device "Wi-Fi"
+node index.js --verbose --device "Ethernet"

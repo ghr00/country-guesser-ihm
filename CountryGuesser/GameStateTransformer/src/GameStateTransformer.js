@@ -11,15 +11,19 @@ const { parseSVG } = require('./SVGParser');
 
 const { GameState } = require('./GameState');
 
+const { getCountry, updateWorldMap } = require('./WorldMap');
 
-const fs = require('fs').promises;
+const fs = require('fs');
 
-async function readFile(filePath) {
+const { DOMParser, XMLSerializer } = require('@xmldom/xmldom')
+
+function readFile(filePath) {
   try {
-    const data = await fs.readFile(filePath);
-    console.log(data.toString());
+    const data = fs.readFileSync(filePath);
 
-    return data.toString();
+    igs.info("len:"+Buffer.byteLength(data))
+    igs.info('len_str:' + data.toString('utf8').length)
+    return data.toString('utf8');
   } catch (error) {
     console.error(`Got an error trying to read the file: ${error.message}`);
   }
@@ -44,7 +48,7 @@ class GameStateTransformer {
     try {
       let result = JSON.parse(data);
 
-      igs.info(JSON.stringify(result.countries));
+      igs.info("countries:" + JSON.stringify(result.countries));
 
       if(result.countries) {
         this.countries = result.countries;
@@ -66,15 +70,26 @@ class GameStateTransformer {
     }
   }
 
-  async transformGameStateToSVG(gameState) {
+  transformGameStateToSVG(gameState) {
     
+    //if(this.isValidGameState(gameState))
     const mapFilePath = "./public/world.svg";
 
-    let svgFileData = await readFile(mapFilePath);
+    let svgFileData = readFile(mapFilePath);
 
-    let worldMap = await parseSVG(svgFileData);
+    igs.info('len_svg=' + svgFileData.slice(-1));
 
-    igs.info(JSON.stringify(worldMap));
+    let worldMap = parseSVG(svgFileData);
+
+    let countries = worldMap.getElementsByTagName("path");
+
+    igs.info('worldMap countries: ' +countries.length);
+
+    let newWorldMap = updateWorldMap(worldMap, gameState);
+
+    igs.info('newWordMap:' + newWorldMap.getElementsByTagName("path").length);
+
+    return newWorldMap;
   }
 
   /////////////////////////////////////////////////////////////////////
@@ -84,9 +99,33 @@ class GameStateTransformer {
   setGameStateJsonI(gameStateJsonI) {
     this.gameStateJsonI = gameStateJsonI;
 
-    let gameState = this.transformInputToGameState(this.getGameStateJsonI());
+    
+    let gameState = this.transformInputToGameState(gameStateJsonI);
 
-    this.transformGameStateToSVG(gameState) 
+    let gameMap =  this.transformGameStateToSVG(gameState) 
+
+    igs.info('getCountry ' + typeof(getCountry))
+    let countries = gameMap.getElementsByTagName("path");
+
+    igs.info('worldMaP2 countries: ' +countries.length);
+
+    for (let i = 0; i < countries.length; i++) {
+      const element = countries.item(i)
+      
+      if(element.getAttribute("title").localeCompare("Colombia") === 0) {
+          igs.info('colombia found : ' + element.getAttribute("fill"))
+      }
+    }
+
+
+    let colombia = getCountry(gameMap, "Colombia");
+
+    igs.info('colombia:' + JSON.stringify(colombia) );
+
+    const serialized = new XMLSerializer().serializeToString(gameMap)
+
+    igs.info(serialized)
+    fs.writeFileSync("./public/new_world.svg", serialized)
   }
   getGameStateJsonI() {
     return this.gameStateJsonI;
