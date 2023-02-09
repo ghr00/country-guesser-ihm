@@ -15,7 +15,11 @@ const { getCountry, updateWorldMap } = require('./WorldMap');
 
 const fs = require('fs');
 
-const { DOMParser, XMLSerializer } = require('@xmldom/xmldom')
+const {  XMLSerializer } = require('@xmldom/xmldom')
+
+const { drawImage } = require('./WhiteboardService');
+
+const { convertWorldMapToPng64 } = require('./SVGToPNG');
 
 function readFile(filePath) {
   try {
@@ -96,7 +100,7 @@ class GameStateTransformer {
   //inputs
 
   // game_state_json
-  setGameStateJsonI(gameStateJsonI) {
+  async setGameStateJsonI(gameStateJsonI) {
     this.gameStateJsonI = gameStateJsonI;
 
     
@@ -117,7 +121,7 @@ class GameStateTransformer {
       }
     }
 
-
+    
     let colombia = getCountry(gameMap, "Colombia");
 
     igs.info('colombia:' + JSON.stringify(colombia) );
@@ -126,6 +130,8 @@ class GameStateTransformer {
 
     igs.info(serialized)
     fs.writeFileSync("./public/new_world.svg", serialized)
+    
+    drawImage(await convertWorldMapToPng64());
   }
   getGameStateJsonI() {
     return this.gameStateJsonI;

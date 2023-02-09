@@ -29,11 +29,12 @@ const updateWorldMap = (doc, worldMap) => {
     igs.info('updateWorldMap worldMap.countries.length: ' + worldMap.countries.length);
     
     for (let i = 0; i < worldMap.countries.length; i++) {
-        igs.info("worldMap.countries[i].name:" + worldMap.countries[i].name)
-        const element = doc.getElementById(getCountry(doc, worldMap.countries[i].name).id)
-            
-        element.setAttribute("fill", "#AB7C94")
-        
+        if( worldMap.countries[i].guesser ) {
+            igs.info("worldMap.countries[i].name:" + worldMap.countries[i].name)
+            const element = doc.getElementById(getCountry(doc, worldMap.countries[i].name).id)
+                
+            element.setAttribute("fill", "#AB7C94")
+        }
     }
     
     return doc;
