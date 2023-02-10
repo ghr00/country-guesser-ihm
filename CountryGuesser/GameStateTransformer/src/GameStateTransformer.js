@@ -7,19 +7,19 @@
 
 const igs = require('ingescape');
 
-const { parseSVG } = require('./SVGParser');
+const { parseSVG } = require('./controllers/SVGParser');
 
-const { GameState } = require('./GameState');
-
-const { getCountry, updateWorldMap } = require('./WorldMap');
+const { updateWorldMap } = require('./controllers/WorldMapController');
 
 const fs = require('fs');
 
 const {  XMLSerializer } = require('@xmldom/xmldom')
 
-const { drawImage } = require('./WhiteboardService');
+const { clearWhiteboard, drawImage } = require('./services/WhiteboardService');
 
-const { convertWorldMapToPng64 } = require('./SVGToPNG');
+const { convertWorldMapToPng64 } = require('./view/SVGToPNG');
+
+const { printLadder }  = require('./controllers/GamePrinter')
 
 function readFile(filePath) {
   try {
@@ -52,8 +52,6 @@ class GameStateTransformer {
     try {
       let result = JSON.parse(data);
 
-      igs.info("countries:" + JSON.stringify(result.countries));
-
       if(result.countries) {
         this.countries = result.countries;
       } else {
@@ -68,30 +66,20 @@ class GameStateTransformer {
 
       return result;
     } catch(e) {
-      igs.error("exceptio");
+      igs.error("exception transformInputToGameState: " + JSON.stringify(e));
 
       return null;
     }
   }
 
   transformGameStateToSVG(gameState) {
-    
-    //if(this.isValidGameState(gameState))
     const mapFilePath = "./public/world.svg";
 
     let svgFileData = readFile(mapFilePath);
 
-    igs.info('len_svg=' + svgFileData.slice(-1));
-
     let worldMap = parseSVG(svgFileData);
 
-    let countries = worldMap.getElementsByTagName("path");
-
-    igs.info('worldMap countries: ' +countries.length);
-
     let newWorldMap = updateWorldMap(worldMap, gameState);
-
-    igs.info('newWordMap:' + newWorldMap.getElementsByTagName("path").length);
 
     return newWorldMap;
   }
@@ -100,39 +88,40 @@ class GameStateTransformer {
   //inputs
 
   // game_state_json
-  async setGameStateJsonI(gameStateJsonI) {
+  setGameStateJsonI(gameStateJsonI) {
     this.gameStateJsonI = gameStateJsonI;
 
+    /* Implementation des transformations de modéles (voir transformations_statechart.png dans la racine du projet) */
     
+    // A chaque fois que le gameState change, regenerer la carte du monde et l'envoyer au Whiteboard
     let gameState = this.transformInputToGameState(gameStateJsonI);
 
+    // On transforme l'etat du jeu en SVG
     let gameMap =  this.transformGameStateToSVG(gameState) 
 
-    igs.info('getCountry ' + typeof(getCountry))
-    let countries = gameMap.getElementsByTagName("path");
-
-    igs.info('worldMaP2 countries: ' +countries.length);
-
-    for (let i = 0; i < countries.length; i++) {
-      const element = countries.item(i)
-      
-      if(element.getAttribute("title").localeCompare("Colombia") === 0) {
-          igs.info('colombia found : ' + element.getAttribute("fill"))
-      }
-    }
-
-    
-    let colombia = getCountry(gameMap, "Colombia");
-
-    igs.info('colombia:' + JSON.stringify(colombia) );
-
+    // On transforme le SVG en String
     const serialized = new XMLSerializer().serializeToString(gameMap)
 
-    igs.info(serialized)
-    fs.writeFileSync("./public/new_world.svg", serialized)
-    
-    drawImage(await convertWorldMapToPng64());
+    // On supprime l'ancienne carte du monde, si elle existe
+    if (fs.existsSync("./public/new_world.svg"))
+      fs.unlinkSync("./public/new_world.svg")
+
+    // Puis on enregistre dans la nouvelle map dans le dossier ./public
+    fs.writeFile("./public/new_world.svg", serialized, () => 
+      // Puis on convertir la map en PNG (base64)
+      convertWorldMapToPng64().then( (img) => {
+        // On supprime l'ancienne carte du monde du Whiteboard
+        clearWhiteboard();
+
+        // On dessine la carte du monde sur le Whiteboard
+        drawImage(img);
+
+        // On écrit le classement des joueurs sur le Whiteboard (chat)
+        printLadder(gameState.ladder);
+      })
+    );
   }
+
   getGameStateJsonI() {
     return this.gameStateJsonI;
   }

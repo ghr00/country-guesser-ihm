@@ -75,6 +75,27 @@
                         "hostname": "vm",
                         "ipAddress": "10.0.2.15",
                         "mac": "08:00:27:E5:0D:C4"
+                    },
+                    {
+                        "commandLine": "C:\\Program Files\\nodejs\\node.exe C:\\Users\\Admin\\Documents\\Ingescape\\sandbox\\GameEngine\\index.js --verbose --device Wi-Fi",
+                        "hostname": "LAPTOP-JCA1Q78L",
+                        "ipAddress": "25.0.39.214",
+                        "mac": "7A:79:19:00:27:D6"
+                    },
+                    {
+                        "commandLine": "C:\\Python\\Python38\\python.exe main.py",
+                        "hostname": "Mhamed",
+                        "ipAddress": "25.49.127.176"
+                    },
+                    {
+                        "commandLine": "C:\\Python\\Python38\\python.exe main.py -d Hamachi -p 5670",
+                        "hostname": "Mhamed",
+                        "ipAddress": "25.49.127.176"
+                    },
+                    {
+                        "commandLine": "C:\\Python\\Python38\\python.exe main.py -d Hamachi",
+                        "hostname": "Mhamed",
+                        "ipAddress": "25.49.127.176"
                     }
                 ],
                 "view": {
@@ -82,7 +103,7 @@
                     "isCollapsed": false,
                     "positionX": 817,
                     "positionY": 90,
-                    "positionZ": 6.399999999999907,
+                    "positionZ": 7.109999999999892,
                     "width": 252
                 }
             },
@@ -116,6 +137,18 @@
                 },
                 "identity": "GameStateTransformer",
                 "instances": [
+                    {
+                        "commandLine": "C:\\Program Files\\nodejs\\node.exe C:\\Users\\Admin\\Documents\\ihm_project\\CountryGuesser\\GameStateTransformer\\index.js --verbose --device Ethernet",
+                        "hostname": "LAPTOP-JCA1Q78L",
+                        "ipAddress": "25.0.39.214",
+                        "mac": "7A:79:19:00:27:D6"
+                    },
+                    {
+                        "commandLine": "C:\\Program Files\\nodejs\\node.exe C:\\Users\\Admin\\Documents\\ihm_project\\CountryGuesser\\GameStateTransformer\\index.js --verbose --device Hamachi",
+                        "hostname": "LAPTOP-JCA1Q78L",
+                        "ipAddress": "25.0.39.214",
+                        "mac": "7A:79:19:00:27:D6"
+                    }
                 ],
                 "view": {
                     "height": 40,
@@ -157,7 +190,7 @@
                 "identity": "WebUserInterface",
                 "instances": [
                     {
-                        "commandLine": "\"/opt/Ingescape-Circle/bin/igsProxy\" --port 5670 --device \"enp0s3\" --name WebUserInterface --license \"/home/vm/Documents/Ingescape/licenses/\" --ws ws://localhost:5000",
+                        "commandLine": "\"D:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device \"Hamachi\" --name WebUserInterface --license \"C:/Users/Mhamed/Documents\\Ingescape\\licenses\\\" --ws ws://25.49.127.176:7777",
                         "hostname": "vm",
                         "ipAddress": "10.0.2.15",
                         "mac": "08:00:27:E5:0D:C4"
@@ -167,14 +200,19 @@
                         "hostname": "vm",
                         "ipAddress": "10.0.2.15",
                         "mac": "08:00:27:E5:0D:C4"
+                    },
+                    {
+                        "commandLine": "\"D:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device Hamachi --name Proxy --license C:/Users/Mhamed/Documents\\Ingescape\\licenses\\ --ws ws://25.49.127.176:7777",
+                        "hostname": "Mhamed",
+                        "ipAddress": "25.49.127.176"
                     }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
-                    "positionX": 444,
-                    "positionY": 230,
-                    "positionZ": 6.309999999999909,
+                    "positionX": 437,
+                    "positionY": 223,
+                    "positionZ": 7.379999999999886,
                     "width": 252
                 }
             },
@@ -521,10 +559,33 @@
                 "identity": "Whiteboard",
                 "instances": [
                     {
-                        "commandLine": "C:\\Users\\Admin\\Downloads\\Whiteboard_windows\\Whiteboard\\Whiteboard.exe --device Wi-Fi --port 5680",
+                        "commandLine": "\"C:\\Users\\Admin\\Downloads\\Whiteboard_windows\\Whiteboard\\Whiteboard.exe\" --port 5670 --device \"Hamachi\" --name Whiteboard",
                         "hostname": "LAPTOP-JCA1Q78L",
-                        "ipAddress": "192.168.186.38",
-                        "mac": "7E:25:E2:A9:4C:AC"
+                        "ipAddress": "25.0.39.214",
+                        "mac": "7A:79:19:00:27:D6"
+                    },
+                    {
+                        "commandLine": "C:\\Users\\Admin\\Downloads\\Whiteboard_windows\\Whiteboard\\Whiteboard.exe --device Ethernet --port 5670",
+                        "hostname": "LAPTOP-JCA1Q78L",
+                        "ipAddress": "25.0.39.214",
+                        "mac": "7A:79:19:00:27:D6"
+                    },
+                    {
+                        "commandLine": "C:\\Users\\Admin\\Downloads\\Whiteboard_windows\\Whiteboard\\Whiteboard.exe --device Wi-Fi --port 5670",
+                        "hostname": "LAPTOP-JCA1Q78L",
+                        "ipAddress": "25.0.39.214",
+                        "mac": "7A:79:19:00:27:D6"
+                    },
+                    {
+                        "commandLine": "C:\\Users\\Admin\\Downloads\\Whiteboard_windows\\Whiteboard\\Whiteboard.exe --device Hamachi --port 5670",
+                        "hostname": "LAPTOP-JCA1Q78L",
+                        "ipAddress": "25.0.39.214",
+                        "mac": "7A:79:19:00:27:D6"
+                    },
+                    {
+                        "commandLine": "D:\\Users\\Mhamed\\Downloads\\Whiteboard_windows\\Whiteboard\\Whiteboard.exe --device Hamachi --port 5670",
+                        "hostname": "Mhamed",
+                        "ipAddress": "25.49.127.176"
                     }
                 ],
                 "view": {
@@ -532,7 +593,79 @@
                     "isCollapsed": false,
                     "positionX": 768,
                     "positionY": 406,
-                    "positionZ": 5.7699999999999205,
+                    "positionZ": 7.369999999999886,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "ca2ffa9faabe4781a21e590fabeabc67",
+                    "inputs": [
+                    ],
+                    "isDynamic": false,
+                    "name": "Proxy",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "dynamic"
+                },
+                "identity": "C153B516DCA87841A43EDF1C58AF900D",
+                "instances": [
+                    {
+                        "commandLine": "\"D:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device \"Hamachi\" --name Proxy --license \"C:/Users/Mhamed/Documents\\Ingescape\\licenses\\\" --ws ws://25.0.39.214:5000",
+                        "hostname": "Mhamed",
+                        "ipAddress": "25.49.127.176"
+                    }
+                ],
+                "lastKnowAgentUUID": "C153B516DCA87841A43EDF1C58AF900D",
+                "view": {
+                    "height": 44,
+                    "isCollapsed": false,
+                    "positionX": 224,
+                    "positionY": 146,
+                    "positionZ": 7.289999999999888,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "ca2ffa9faabe4781a21e590fabeabc67",
+                    "inputs": [
+                    ],
+                    "isDynamic": false,
+                    "name": "Proxy",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "dynamic"
+                },
+                "identity": "EA63C6713A92394A9D45C4A44EF9C559",
+                "instances": [
+                    {
+                        "commandLine": "\"D:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device \"Hamachi\" --name Proxy --license \"C:/Users/Mhamed/Documents\\Ingescape\\licenses\\\" --ws ws://25.49.127.176:7777",
+                        "hostname": "Mhamed",
+                        "ipAddress": "25.49.127.176"
+                    }
+                ],
+                "lastKnowAgentUUID": "EA63C6713A92394A9D45C4A44EF9C559",
+                "view": {
+                    "height": 44,
+                    "isCollapsed": false,
+                    "positionX": 207,
+                    "positionY": 426,
+                    "positionZ": 7.399999999999886,
                     "width": 252
                 }
             },
@@ -554,22 +687,22 @@
                     ],
                     "version": ""
                 },
-                "identity": "c307b04e-e25e-4768-9bb6-2fe9fd0394d4",
+                "identity": "fa63a5fc-4daf-4234-ba4e-ab8a61241e14",
                 "instances": [
                     {
-                        "commandLine": "\"/opt/Ingescape-Circle/bin/igsProxy\" --port 5670 --device \"enp0s3\" --name Proxy --license \"/home/vm/Documents/Ingescape/licenses/\" --ws ws://localhost:5000",
-                        "hostname": "vm",
-                        "ipAddress": "10.0.2.15",
-                        "mac": "08:00:27:E5:0D:C4"
+                        "commandLine": "\"C:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device \"Hamachi\" --name Proxy --license \"C:/Users/Admin/Documents/Ingescape/licenses\" --ws ws://localhost:5000",
+                        "hostname": "LAPTOP-JCA1Q78L",
+                        "ipAddress": "25.0.39.214",
+                        "mac": "7A:79:19:00:27:D6"
                     }
                 ],
-                "lastKnowAgentUUID": "719A4DD6272DEB3B311369551132C55D",
+                "lastKnowAgentUUID": "",
                 "view": {
                     "height": 44,
                     "isCollapsed": false,
-                    "positionX": 323,
-                    "positionY": 692,
-                    "positionZ": 6.639999999999902,
+                    "positionX": 104,
+                    "positionY": 526,
+                    "positionZ": 7.409999999999886,
                     "width": 252
                 }
             }
@@ -580,18 +713,6 @@
                 "fromInput": "player_input",
                 "toAgent": "WebUserInterface",
                 "toOutput": "player_input"
-            },
-            {
-                "fromAgent": "GameStateTransformer",
-                "fromInput": "game_state_json",
-                "toAgent": "GameEngine",
-                "toOutput": "game_state_json"
-            },
-            {
-                "fromAgent": "GameStateTransformer",
-                "fromInput": "status_json",
-                "toAgent": "GameEngine",
-                "toOutput": "status_json"
             },
             {
                 "fromAgent": "a67cad75-c613-4fd9-8b18-c8b3b0bf73f9",
@@ -608,6 +729,36 @@
             {
                 "fromAgent": "80e4ce1c-075e-4a1c-a417-ff76e852586e",
                 "fromInput": "wildcard",
+                "toAgent": "GameEngine",
+                "toOutput": "status_json"
+            },
+            {
+                "fromAgent": "GameStateTransformer",
+                "fromInput": "game_state_json",
+                "toAgent": "a2dbe237-067a-4190-af57-740218788815",
+                "toOutput": "value"
+            },
+            {
+                "fromAgent": "51722f83-6a03-482d-b4dd-10342fc97301",
+                "fromInput": "wildcard",
+                "toAgent": "Whiteboard",
+                "toOutput": "lastAction"
+            },
+            {
+                "fromAgent": "0cf3ef66-a7d2-4fcb-be33-333e816a593a",
+                "fromInput": "wildcard",
+                "toAgent": "Whiteboard",
+                "toOutput": "ui_error"
+            },
+            {
+                "fromAgent": "GameStateTransformer",
+                "fromInput": "game_state_json",
+                "toAgent": "GameEngine",
+                "toOutput": "game_state_json"
+            },
+            {
+                "fromAgent": "GameStateTransformer",
+                "fromInput": "status_json",
                 "toAgent": "GameEngine",
                 "toOutput": "status_json"
             }
@@ -647,8 +798,8 @@
                     "height": 87,
                     "isCollapsed": false,
                     "positionX": 776,
-                    "positionY": 273,
-                    "positionZ": 6.439999999999906,
+                    "positionY": 288,
+                    "positionZ": 6.9899999999998945,
                     "width": 326
                 }
             },
@@ -718,8 +869,164 @@
                     "isCollapsed": false,
                     "positionX": 1322,
                     "positionY": 254,
-                    "positionZ": 6.4299999999999065,
+                    "positionZ": 7.149999999999891,
                     "width": 539
+                }
+            },
+            {
+                "data": {
+                    "entry 0": "{ \"countries\" : [ { \"name\" : \"Morocco\", \"guesser\" : \"amine\" }, { \"name\" : \"Colombia\", \"guesser\" : \"a\" }, { \"name\" : \"Russia\", \"guesser\" : \"b\" } ], \"ladder\" : [ { \"name\" : \"amine\", \"score\":10, \"color\":\"#B83B93\" }, { \"name\" : \"a\", \"score\" : 8, \"color\": \"#AAAEF1\" } ] }"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "fbba66d6-8d60-4694-b5fa-63b6f3f51e63",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "value",
+                            "type": "STRING"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "a2dbe237-067a-4190-af57-740218788815",
+                "instances": [
+                    {
+                        "commandLine": "\"C:\\Program Files\\Ingescape\\Ingescape Circle\\igsProxy.exe\" --port 5670 --device \"Hamachi\" --license \"C:/Users/Admin/Documents/Ingescape/licenses\"",
+                        "hostname": "LAPTOP-JCA1Q78L",
+                        "ipAddress": "25.0.39.214",
+                        "mac": "7A:79:19:00:27:D6"
+                    }
+                ],
+                "view": {
+                    "height": 52,
+                    "isCollapsed": false,
+                    "positionX": 988,
+                    "positionY": -240,
+                    "positionZ": 7.439999999999885,
+                    "width": 256
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "51722f83-6a03-482d-b4dd-10342fc97301",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": 1166,
+                    "positionY": 613,
+                    "positionZ": 6.789999999999899,
+                    "width": 512
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "0cf3ef66-a7d2-4fcb-be33-333e816a593a",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": 997.5213042831522,
+                    "positionY": 752.9957599790159,
+                    "positionZ": 6.7299999999999,
+                    "width": 180
+                }
+            },
+            {
+                "data": {
+                    "arguments": [
+                    ],
+                    "selectedAgent": "Whiteboard",
+                    "selectedService": "clear"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-548p-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "845bacaf-dd45-472a-99b7-40a380b9c808",
+                "instances": [
+                ],
+                "view": {
+                    "height": 48,
+                    "isCollapsed": false,
+                    "positionX": 1861,
+                    "positionY": 520,
+                    "positionZ": 6.869999999999897,
+                    "width": 246
                 }
             }
         ]

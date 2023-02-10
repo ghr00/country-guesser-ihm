@@ -1,1 +1,1 @@
-node index.js --verbose --device "Ethernet"
+node index.js --verbose --device "Hamachi"

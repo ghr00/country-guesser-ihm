@@ -1,5 +1,8 @@
 
 
+/**
+ * Modéle d'un pays
+ */
 class Country {
     id;
     name;
