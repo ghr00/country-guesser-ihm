@@ -27,6 +27,6 @@ Documentation and Instructions to install and run are available in [CountryGuess
 
 ## Known bugs
 
-Il arrive que le Whiteboard ne clean pas correctement les anciennes images, ou bien charge une image trés ancienne (depuis sa cache si elle existe ?), on ne sait pas si ce bug vient de notre code ou bien de l'implementation du Whiteboard. Pour s'assurer que l'état du jeu généré est correct, il faut aller au dossier ./public/new_world.svg et accéder à l'image ou bien générer un PNG à partir de output.txt (code en base64).
+Il arrive que le Whiteboard ne clean pas correctement les anciennes images, ou bien charge une image trés ancienne (depuis sa cache si elle existe ?), on ne sait pas si ce bug vient de notre code ou bien de l'implementation du Whiteboard. Pour s'assurer que l'état du jeu généré est correct, il faut aller à ./CountryGuesser/GameStateTransformer/public/new_world.svg et accéder à l'image ou bien générer un PNG à partir de output.txt (code en base64).
 
 On a pas réussi à faire marcher le projet NodeJS sur Linux, pour tester le projet on a utilisé Hamachi pour créer un réseau LAN virtuel et on a pu tester le jeu ainsi, chaque agent est hebergé dans un PC à distance connecté à deux autres PC par Hamachi.
