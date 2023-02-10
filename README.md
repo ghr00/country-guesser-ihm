@@ -16,11 +16,11 @@ L'architecture est basée sur le pattern MVC, chaque agent joue un rôle particu
 
 ## GameStateTransformer
 
-![Etape de la transformation de l'état de jeu en carte du monde](transformation_statechart.png)
+![Etape de la transformation de l'état de jeu en carte du monde](transformations_statechart.png)
 
 Documentation and Instructions to install and run are available in [CountryGuesser/GameStateTransformer/README.md](CountryGuesser/GameStateTransformer/README.md).
 
-![Exemple d'une carte du monde générée](example_genrerated_world_map.png)
+![Exemple d'une carte du monde générée](example_genrerated_world_map.jpg)
 
 ## About the GameEngine Agent
 Documentation and Instructions to install and run are available in [CountryGuesser/GameEngine/README.md](CountryGuesser/GameEngine/README.md).
