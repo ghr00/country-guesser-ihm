@@ -4,7 +4,7 @@
 
 ![Architecutre sur Ingescape Circle](circle.png)
 
-L'architecture est basée sur le pattern MVC, chaque agent joue un rôle particulier :
+L'architecture est basée sur trois controleurs ou agents, chaque agent joue un rôle particulier :
 
 - WebUserInterface : ce controleur gére les interactions du joueur avec le jeu, il permet d'envoyer les inputs du joueur au GameEngine pour être traité.
 - GameEngine : ce controleur gére la logique du jeu. C'est lui qui s'occupe d'enregistrer un joueur dans le jeu, vérifier si les inputs sont OK, générer l'état de jeu et le classement des joueurs.
