@@ -92,10 +92,18 @@ def signal_handler(signal_received, frame):
     is_interrupted = True
 
 
+# FOR SOME REASON
+# THIS FUNCTION CAUSES THE PROGRAM TO CRASH WHEN RUN IN WINDOWS
+# IT EXITS WITH A SEGMENTATION FAULT ERROR
+# WHEN COMMENTED OUT, THE PROGRAM RUNS FINE IN WINDOWS
+# IT IS ENOUGH TO COMMENT OUT THE ASSERTION LINE TO MAKE IT WORK
+# HOWEVER IT DOES NOT EXIT WHEN CTRL+C IS PRESSED
+# IN LINUX, IT RUNS FINE WITH THIS FUNCTION
 def on_agent_event_callback(event, uuid, name, event_data, my_data):
     agent_object = my_data
-    assert isinstance(agent_object, GameEngine)
+    # assert isinstance(agent_object, GameEngine)
     # add code here if needed
+    pass
 
 
 def on_freeze_callback(is_frozen, my_data):
@@ -108,7 +116,10 @@ def on_freeze_callback(is_frozen, my_data):
 def player_input_input_callback(iop_type, name, value_type, value, my_data):
     agent_object = my_data
     assert isinstance(agent_object, GameEngine)
+
+    # set the player input value
     agent_object.player_inputI = value
+    # and run the main game logic in GameEngine.py
     agent_object.run()
 
 

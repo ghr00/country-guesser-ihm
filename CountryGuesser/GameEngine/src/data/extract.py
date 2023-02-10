@@ -1,3 +1,5 @@
+# Extracts the country names from the SVG map and saves them to a text file countries.txt
+
 from xml.dom import minidom
 
 svg = minidom.parse("world.svg")
