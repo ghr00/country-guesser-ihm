@@ -10,6 +10,7 @@
 # connected players.
 #
 
+import argparse
 import getopt
 import signal
 import sys
@@ -18,9 +19,18 @@ from pathlib import Path
 
 from GameEngine import *
 
-port = 5670
+DEFAULT_DEVICE = "enp0s3"
+DEFAULT_PORT = 5670
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--device", "-d", help="name of the network device to be used", default=DEFAULT_DEVICE)
+parser.add_argument("--port", "-p", help="port to be used", default=DEFAULT_PORT)
+
+args = parser.parse_args()
+
+device = args.device
+port = args.port
 agent_name = "GameEngine"
-device = "enp0s3"
 verbose = False
 is_interrupted = False
 
